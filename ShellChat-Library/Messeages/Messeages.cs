@@ -11,10 +11,28 @@ namespace ShellChat_Library.Messeages
             public static string ReciveMesseage(TcpClient client)
             {
                 Stream stream = client.GetStream();
-                byte[] buffer = new byte[1024];
-                int read = stream.Read(buffer, 0, buffer.Length);
-                if (read == 0) return null;
-                return Encoding.UTF8.GetString(buffer, 0, read);
+
+                byte[] header = new byte[4];
+                ReadExactly(stream, header, 0, header.Length);
+                int messageLength = IPAddress.NetworkToHostOrder(BitConverter.ToInt32(header, 0));
+                if (messageLength < 0)
+                    throw new InvalidDataException($"Invalid message length: {messageLength}");
+
+                byte[] buffer = new byte[messageLength];
+                ReadExactly(stream, buffer, 0, messageLength);
+                return Encoding.UTF8.GetString(buffer, 0, messageLength);
+            }
+
+            private static void ReadExactly(Stream stream, byte[] buffer, int offset, int count)
+            {
+                int total = 0;
+                while (total < count)
+                {
+                    int read = stream.Read(buffer, offset + total, count - total);
+                    if (read == 0)
+                        throw new EndOfStreamException("Socket closed before full message was received.");
+                    total += read;
+                }
             }
         }
     }
