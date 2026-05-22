@@ -1,6 +1,6 @@
-# ShellSpeak
+# ShellChat
 
-ShellSpeak is a C# command-line chat project with three applications:
+ShellChat is a C# command-line chat project with three applications:
 
 - `ShellChat-Server`: the chat server
 - `ShellChat-Client`: the chat client
