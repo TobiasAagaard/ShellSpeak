@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
@@ -11,7 +12,6 @@ namespace ShellChat_Library.Messeages
             public static string ReciveMesseage(TcpClient client)
             {
                 Stream stream = client.GetStream();
-
                 byte[] header = new byte[4];
                 ReadExactly(stream, header, 0, header.Length);
                 int messageLength = IPAddress.NetworkToHostOrder(BitConverter.ToInt32(header, 0));
@@ -22,7 +22,6 @@ namespace ShellChat_Library.Messeages
                 ReadExactly(stream, buffer, 0, messageLength);
                 return Encoding.UTF8.GetString(buffer, 0, messageLength);
             }
-
             private static void ReadExactly(Stream stream, byte[] buffer, int offset, int count)
             {
                 int total = 0;
