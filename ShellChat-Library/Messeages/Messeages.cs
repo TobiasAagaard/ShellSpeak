@@ -11,11 +11,13 @@ namespace ShellChat_Library.Messeages
             
             public static string ReciveMesseage(TcpClient client)
             {
+                const int MaxMessageSize = 64 * 1024;
+
                 Stream stream = client.GetStream();
                 byte[] header = new byte[4];
                 ReadExactly(stream, header, 0, header.Length);
                 int messageLength = IPAddress.NetworkToHostOrder(BitConverter.ToInt32(header, 0));
-                if (messageLength < 0)
+                if (messageLength < 0 || messageLength > MaxMessageSize)
                     throw new InvalidDataException($"Invalid message length: {messageLength}");
 
                 byte[] buffer = new byte[messageLength];
