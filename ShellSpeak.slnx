@@ -1,5 +1,5 @@
 <Solution>
-  <Project Path="ShellSpeak-Client/ShellSpeak-Client.csproj" />
-  <Project Path="ShellSpeak-library/ShellSpeak-library.csproj" />
-  <Project Path="ShellSpeak-Server/ShellSpeak-Server.csproj" />
+  <Project Path="ShellChat-Client/ShellChat-Client.csproj" />
+  <Project Path="ShellChat-Library/ShellChat-library.csproj" />
+  <Project Path="ShellChat-Server/ShellChat-Server.csproj" />
 </Solution>

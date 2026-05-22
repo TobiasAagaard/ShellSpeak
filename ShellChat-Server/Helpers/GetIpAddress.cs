@@ -1,7 +1,7 @@
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 
-namespace ShellSpeak_Server.Helpers;
+namespace ShellChat_Server.Helpers;
 
 public static class GetIpAddress
 {

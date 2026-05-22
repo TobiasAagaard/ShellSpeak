@@ -1,8 +1,8 @@
 ﻿using System.Net;
 using System.Net.Sockets;
-using ShellSpeak_Server.Helpers;
+using ShellChat_Server.Helpers;
 
-namespace ShellSpeak_Server;
+namespace ShellChat_Server;
 
 public class Program
 {
@@ -16,7 +16,7 @@ public class Program
 
         string localIP = GetIpAddress.GetLocalIPAddress();
         Console.WriteLine("==================================================");
-        Console.WriteLine($"         ShellSpeak Server v{version}");
+        Console.WriteLine($"         ShellChat Server v{version}");
         Console.WriteLine($"         Listening on {localIP}:{port}");
         Console.WriteLine("==================================================");
         Console.WriteLine("Waiting for incoming connections...");
